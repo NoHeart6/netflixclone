@@ -622,7 +622,7 @@
                 <!-- Kolom Profil -->
                 <div class="col-lg-6">
                     <div class="owner-profile">
-                        <img src="https://assets.onecompiler.app/42hja26js/42w2d3sae/1000524781.jpg" alt="Profil Wisnu Hidayat" class="profile-image mx-auto d-block">
+                        <img src="https://assets.onecompiler.app/42hja26js/42w2dx2cd/1000525747.jpg" alt="Profil Wisnu Hidayat" class="profile-image mx-auto d-block">
                         <h2 class="text-center">Wisnu Hidayat</h2>
                         <p class="text-center">Wisnu Hidayat adalah pemilik Netflix Store yang berdedikasi untuk memberikan pengalaman streaming terbaik kepada pelanggan. Dengan visi untuk menghadirkan hiburan berkualitas tinggi, Wisnu berkomitmen untuk terus berinovasi dan meningkatkan layanan.</p>
                     </div>
@@ -676,7 +676,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="ratio ratio-16x9">
-                        <iframe src="" allowfullscreen></iframe>
+                        <iframe id="trailerIframe" src="" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -733,7 +733,7 @@
             // Load movies
             function loadMovies() {
                 const movies = [
-                    { title: "Stranger Things 4", image: "https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg", description: "Mystery, Drama, Horror", trailer: "https://www.youtube.com/embed/yQEondeGvKo" },
+                    { title: "Stranger Things 4", image: "https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg", description: "Mystery, Drama, Horror", trailer: "https://www.youtube.com/embed/b9EkMc79ZSU" },
                     { title: "The Witcher: Season 2", image: "https://m.media-amazon.com/images/M/MV5BN2FiOWU4YzYtMzZiOS00MzcyLTlkOGEtOTgwZmEwMzAxMzA3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg", description: "Fantasy, Action, Adventure", trailer: "https://www.youtube.com/embed/ndl1W4ltcmg" },
                     { title: "Squid Game", image: "https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_.jpg", description: "Thriller, Drama", trailer: "https://www.youtube.com/embed/oqxAJKy0ii4" },
                     { title: "Money Heist: Part 5", image: "https://m.media-amazon.com/images/M/MV5BNDJkYzY3MzMtMGFhYi00MmQ4LWJkNTgtZGNiZWZmMTMxNzdlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg", description: "Crime, Thriller", trailer: "https://www.youtube.com/embed/htqXL94Rza4" },
@@ -763,6 +763,8 @@
 
                 // Tambahkan event listener untuk tombol trailer
                 $('.watch-trailer').on('click', function() {
+                    const trailerUrl = $(this).data('trailer');
+                    $('#trailerIframe').attr('src', trailerUrl);
                     showNotification('Memuat trailer...');
                 });
             }
@@ -840,6 +842,11 @@
 
             // Tambahkan kelas fade-in ke elemen yang ingin dianimasikan
             $("h2, .feature-list, .price-table, .testimonial-card, .movie-card").addClass("fade-in");
+
+            // Tambahkan event listener untuk menutup modal
+            $('#trailerModal').on('hidden.bs.modal', function () {
+                $('#trailerIframe').attr('src', '');
+            });
         });
     </script>
 
